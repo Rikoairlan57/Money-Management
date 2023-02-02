@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../models/category_model/category_model.dart';
+import '../../screens/basescreen/default_category.dart';
 
 const CATEGORY_DB_NAME = "category-database";
 
@@ -36,7 +37,8 @@ class CategoryDB implements CategoryDBFunctions {
     final allCategories = await getCategories();
     incomeCategoryList.value.clear();
     expenseCategoryList.value.clear();
-
+    expenseCategoryList.value.addAll(defultcategoryexpase);
+    incomeCategoryList.value.addAll(defaultcategoryincome);
     await Future.forEach(allCategories, (
       CategoryModel category,
     ) {
