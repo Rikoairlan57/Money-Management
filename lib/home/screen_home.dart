@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:money_management/db/transaction/transaction_db.dart';
 import 'package:money_management/screens/category/category_graph_screen.dart';
 import 'package:money_management/screens/transactions/screen_transaction.dart';
 import 'package:money_management/screens/transactions/widget/histroy.dart';
@@ -26,6 +27,13 @@ class _ScreenHomeState extends State<ScreenHome> {
     const Profile()
   ];
   @override
+  void initState() {
+    TransactionDb.instance.refreshUI();
+    super.initState();
+  }
+
+  int currentindex = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 249, 233, 252),
@@ -40,7 +48,9 @@ class _ScreenHomeState extends State<ScreenHome> {
           color: Colors.purple,
           activeColor: Colors.white,
           onTabChange: (newIndex) {
-            setState(() {});
+            setState(() {
+              currentindex = newIndex;
+            });
           },
           tabs: const [
             GButton(
@@ -62,6 +72,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           ],
         )),
       ),
+      body: SafeArea(child: _pages[currentindex]),
     );
   }
 }
