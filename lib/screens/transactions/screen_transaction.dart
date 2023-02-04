@@ -93,7 +93,7 @@ class _ScreentransactionState extends State<Screentransaction> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            const IncomeScreen()));
+                            const IncomScreen()));
                   },
                 ),
                 GestureDetector(
