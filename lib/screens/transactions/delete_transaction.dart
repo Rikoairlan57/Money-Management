@@ -1,0 +1,1 @@
+void transactiondelete(value, context) {}
