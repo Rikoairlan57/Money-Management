@@ -30,7 +30,7 @@ class IntroScreenMain extends StatelessWidget {
           botton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (BuildContext context) => const LoginScreen()));
+                    builder: (BuildContext context) => const Loginscreen()));
               },
               titel: "continue")
         ]),
