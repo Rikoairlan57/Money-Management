@@ -38,7 +38,7 @@ class CategoryDB implements CategoryDBFunctions {
     incomeCategoryList.value.clear();
     expenseCategoryList.value.clear();
     expenseCategoryList.value.addAll(defultcategoryexpase);
-    incomeCategoryList.value.addAll(defaultcategoryincome);
+    incomeCategoryList.value.addAll(defultcategoryincome);
     await Future.forEach(allCategories, (
       CategoryModel category,
     ) {

@@ -20,7 +20,7 @@ class Update extends StatefulWidget {
 
 class _UpdateState extends State<Update> {
   late TextEditingController amuont;
-  late TextEditingController description;
+  late TextEditingController discripstion;
   late DateTime selectedDate;
   late CategoryModel categorymodel;
   late CategoryType categorytype;
@@ -29,7 +29,7 @@ class _UpdateState extends State<Update> {
   @override
   void initState() {
     amuont = TextEditingController(text: widget.model.amount.toString());
-    description = TextEditingController(text: widget.model.description);
+    discripstion = TextEditingController(text: widget.model.description);
     selectedDate = widget.model.calender;
     categorymodel = widget.model.category;
     categorytype = widget.model.type;
@@ -165,7 +165,7 @@ class _UpdateState extends State<Update> {
                         icon: const Icon(Icons.clear),
                       ),
                       prefixIcon: const Icon(
-                        Icons.money_outlined,
+                        Icons.currency_rupee,
                         color: Color.fromARGB(255, 144, 15, 204),
                       ),
                     ),
@@ -181,14 +181,14 @@ class _UpdateState extends State<Update> {
                         return null;
                       }
                     },
-                    controller: description,
+                    controller: discripstion,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
                       prefixIcon: const Icon(Icons.notes, color: Colors.purple),
                       hintText: 'Description',
                       suffixIcon: IconButton(
                         onPressed: () {
-                          description.clear();
+                          discripstion.clear();
                         },
                         icon: const Icon(Icons.clear),
                       ),
@@ -215,19 +215,19 @@ class _UpdateState extends State<Update> {
     if (amounts == null) {
       return;
     }
-    final discriptioan = description.text;
+    final discriptioan = discripstion.text;
     final date = selectedDate;
     final model = categorymodel;
     final type = categorytype;
-    final transaction = TransactionModel(
+    final trans = TransactionModel(
         category: model,
         type: type,
         amount: amounts,
         description: discriptioan,
         calender: date);
 
-    log(transaction.toString());
-    TransactionDb.instance.updateTransaction(widget.index, transaction);
+    log(trans.toString());
+    TransactionDb.instance.updateTransaction(widget.index, trans);
     Navigator.of(context).pop();
     CategoryDB.instance.refreshUI();
     TransactionDb.instance.refreshUI();

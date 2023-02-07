@@ -43,10 +43,8 @@ class _RecentTransactionState extends State<RecentTransaction> {
                       borderRadius: BorderRadius.circular(15),
                       onPressed: (context) {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Update(
-                            model: value,
-                            index: index,
-                          ),
+                          builder: (context) =>
+                              Update(model: value, index: index),
                         ));
                       },
                       backgroundColor: Colors.green,
