@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../models/category_model/category_model.dart';
+import '../models/transaction_model/transaction_model.dart';
+import '../screens/basescreen/decoration.dart';
+import '../screens/basescreen/splash_screen.dart';
+import 'terms.dart';
+import 'about.dart';
+import 'privacy.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -7,9 +16,159 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
+String username = '';
+
 class _ProfileState extends State<Profile> {
   @override
+  void initState() {
+    autoLogin();
+    super.initState();
+  }
+
+  void autoLogin() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString("nameKey").toString();
+    });
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+      ),
+      backgroundColor: const Color.fromARGB(255, 249, 233, 252),
+      body: SafeArea(
+          child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              left: 15,
+              top: 10,
+              bottom: 5,
+            ),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: textBigG(text: "Username"),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.info_outline, color: Colors.black),
+            title: textBigB(text: 'About', size: 15, align: TextAlign.start),
+            trailing: const Icon(Icons.arrow_forward, color: Colors.black),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const About();
+                },
+              ),
+            ),
+          ),
+          ListTile(
+            leading:
+                const Icon(Icons.privacy_tip_outlined, color: Colors.black),
+            title: textBigB(
+                text: 'Privacy policy', size: 15, align: TextAlign.start),
+            trailing: const Icon(Icons.arrow_forward, color: Colors.black),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const Privacy();
+                },
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.message, color: Colors.black),
+            title: textBigB(
+                text: 'Trems and Condition', size: 15, align: TextAlign.start),
+            trailing: const Icon(
+              Icons.arrow_forward,
+              color: Colors.black,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const Terms();
+                },
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ListTile(
+                onTap: () async {
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      backgroundColor: const Color.fromRGBO(206, 147, 216, 1),
+                      content: textBig(
+                        text: "Do you want logout",
+                        size: 20,
+                      ),
+                      actions: [
+                        MaterialButton(
+                          color: Colors.purple,
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                          },
+                          child: const Text(
+                            "No",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        MaterialButton(
+                          color: Colors.white,
+                          onPressed: () async {
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return const SplashScreen();
+                              },
+                            ), (route) => false);
+                          },
+                          child: const Text(
+                            "Yes",
+                            style: TextStyle(
+                              color: Colors.purple,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                  final categoryDB =
+                      await Hive.openBox<CategoryModel>('category-database');
+
+                  categoryDB.clear();
+
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
+                  await preferences.clear();
+                  final trans = await Hive.openBox<TransactionModel>('name');
+
+                  await trans.clear();
+                },
+                title: textBigB(text: 'Logout', size: 18),
+                trailing: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset('assets/image/logout.jpg'),
+                ),
+              ),
+            ),
+          )
+        ],
+      )),
+    );
   }
 }
