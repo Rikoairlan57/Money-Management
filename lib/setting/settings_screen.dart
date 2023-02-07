@@ -5,7 +5,7 @@ import '../models/category_model/category_model.dart';
 import '../models/transaction_model/transaction_model.dart';
 import '../screens/basescreen/decoration.dart';
 import '../screens/basescreen/splash_screen.dart';
-import 'terms.dart';
+import 'package:money_management/setting/terms.dart';
 import 'about.dart';
 import 'privacy.dart';
 
@@ -21,18 +21,19 @@ String username = '';
 class _ProfileState extends State<Profile> {
   @override
   void initState() {
-    autoLogin();
+    autoLogIn();
     super.initState();
   }
 
-  void autoLogin() async {
+  void autoLogIn() async {
     WidgetsFlutterBinding.ensureInitialized();
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      username = prefs.getString("nameKey").toString();
+      username = prefs.getString('nameKey').toString();
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -40,17 +41,19 @@ class _ProfileState extends State<Profile> {
       ),
       backgroundColor: const Color.fromARGB(255, 249, 233, 252),
       body: SafeArea(
-          child: Column(
-        children: [
+        child: Column(children: [
           Padding(
-            padding: EdgeInsets.only(
-              left: 15,
-              top: 10,
-              bottom: 5,
-            ),
+            padding: const EdgeInsets.only(left: 15, top: 10, bottom: 5),
             child: Container(
               alignment: Alignment.centerLeft,
-              child: textBigG(text: "Username"),
+              child: textBigG(text: 'Username'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, bottom: 50),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: textBig(text: username, color: Colors.black, size: 25),
             ),
           ),
           ListTile(
@@ -61,7 +64,7 @@ class _ProfileState extends State<Profile> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const About();
+                  return const MyAbout();
                 },
               ),
             ),
@@ -103,50 +106,45 @@ class _ProfileState extends State<Profile> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
               ),
               child: ListTile(
                 onTap: () async {
                   showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                      backgroundColor: const Color.fromRGBO(206, 147, 216, 1),
-                      content: textBig(
-                        text: "Do you want logout",
-                        size: 20,
-                      ),
-                      actions: [
-                        MaterialButton(
-                          color: Colors.purple,
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: const Text(
-                            "No",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        MaterialButton(
-                          color: Colors.white,
-                          onPressed: () async {
-                            Navigator.pushAndRemoveUntil(context,
-                                MaterialPageRoute(
-                              builder: (context) {
-                                return const SplashScreen();
-                              },
-                            ), (route) => false);
-                          },
-                          child: const Text(
-                            "Yes",
-                            style: TextStyle(
-                              color: Colors.purple,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                            backgroundColor:
+                                const Color.fromRGBO(206, 147, 216, 1),
+                            content:
+                                textBig(text: 'Do you want logout ', size: 20),
+                            actions: [
+                              MaterialButton(
+                                color: Colors.purple,
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: const Text(
+                                  'No',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              MaterialButton(
+                                color: Colors.white,
+                                onPressed: () async {
+                                  Navigator.pushAndRemoveUntil(context,
+                                      MaterialPageRoute(
+                                    builder: (context) {
+                                      return const SplashScreen();
+                                    },
+                                  ), (route) => false);
+                                },
+                                child: const Text(
+                                  'Yes',
+                                  style: TextStyle(color: Colors.purple),
+                                ),
+                              )
+                            ],
+                          ));
                   final categoryDB =
                       await Hive.openBox<CategoryModel>('category-database');
 
@@ -166,9 +164,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-          )
-        ],
-      )),
+          ),
+        ]),
+      ),
     );
   }
 }
