@@ -1,0 +1,1 @@
+void categorydelete(value, context) {}
