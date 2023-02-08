@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:money_management/home/screen_home.dart';
+import 'package:flutter/material.dart';
+
 import '../../screens/basescreen/decoration.dart';
 
 class Setup extends StatelessWidget {

@@ -79,7 +79,7 @@ class _ProfileState extends State<Profile> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const Privacy();
+                  return const privacy();
                 },
               ),
             ),

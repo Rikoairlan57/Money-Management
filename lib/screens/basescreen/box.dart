@@ -1,7 +1,8 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class Box extends StatelessWidget {
-  // ignore: prefer_typing_uninitialized_variables
   final child;
   const Box({super.key, this.child});
 

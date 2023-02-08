@@ -1,5 +1,6 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import '../category_model/category_model.dart';
 part 'transaction_model.g.dart';
 

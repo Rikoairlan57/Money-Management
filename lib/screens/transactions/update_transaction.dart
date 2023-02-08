@@ -1,5 +1,5 @@
 import 'package:money_management/db/category/category_db.dart';
-import 'package:money_management/db/transaction/transaction_db.dart';
+import 'package:money_management/db/transation/transation_db.dart';
 import 'package:money_management/models/category_model/category_model.dart';
 import 'package:money_management/models/transaction_model/transaction_model.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class Update extends StatefulWidget {
 
 class _UpdateState extends State<Update> {
   late TextEditingController amuont;
-  late TextEditingController discripstion;
+  late TextEditingController descripstion;
   late DateTime selectedDate;
   late CategoryModel categorymodel;
   late CategoryType categorytype;
@@ -29,7 +29,7 @@ class _UpdateState extends State<Update> {
   @override
   void initState() {
     amuont = TextEditingController(text: widget.model.amount.toString());
-    discripstion = TextEditingController(text: widget.model.description);
+    descripstion = TextEditingController(text: widget.model.description);
     selectedDate = widget.model.calender;
     categorymodel = widget.model.category;
     categorytype = widget.model.type;
@@ -165,7 +165,7 @@ class _UpdateState extends State<Update> {
                         icon: const Icon(Icons.clear),
                       ),
                       prefixIcon: const Icon(
-                        Icons.currency_rupee,
+                        Icons.money_outlined,
                         color: Color.fromARGB(255, 144, 15, 204),
                       ),
                     ),
@@ -181,14 +181,14 @@ class _UpdateState extends State<Update> {
                         return null;
                       }
                     },
-                    controller: discripstion,
+                    controller: descripstion,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
                       prefixIcon: const Icon(Icons.notes, color: Colors.purple),
                       hintText: 'Description',
                       suffixIcon: IconButton(
                         onPressed: () {
-                          discripstion.clear();
+                          descripstion.clear();
                         },
                         icon: const Icon(Icons.clear),
                       ),
@@ -215,7 +215,7 @@ class _UpdateState extends State<Update> {
     if (amounts == null) {
       return;
     }
-    final discriptioan = discripstion.text;
+    final discriptioan = descripstion.text;
     final date = selectedDate;
     final model = categorymodel;
     final type = categorytype;

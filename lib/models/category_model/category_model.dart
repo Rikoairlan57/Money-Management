@@ -15,11 +15,11 @@ class CategoryModel {
   String? id;
   @HiveField(1)
   final String name;
-  @HiveField(0)
+  @HiveField(2)
   final bool isDelete;
-  @HiveField(0)
+  @HiveField(3)
   final CategoryType type;
-  @HiveField(0)
+  @HiveField(4)
   final String? image;
 
   CategoryModel(

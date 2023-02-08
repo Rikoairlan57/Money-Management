@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member, constant_identifier_names
+
+import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../models/category_model/category_model.dart';
 import '../../screens/basescreen/default_category.dart';
 
-const CATEGORY_DB_NAME = "category-database";
+const CATEGORY_DB_NAME = 'category-database';
 
 abstract class CategoryDBFunctions {
   Future<List<CategoryModel>> getCategories();
@@ -37,19 +40,23 @@ class CategoryDB implements CategoryDBFunctions {
     final allCategories = await getCategories();
     incomeCategoryList.value.clear();
     expenseCategoryList.value.clear();
-    expenseCategoryList.value.addAll(defultcategoryexpase);
-    incomeCategoryList.value.addAll(defultcategoryincome);
-    await Future.forEach(allCategories, (
-      CategoryModel category,
-    ) {
-      if (category.type == CategoryType.income) {
-        incomeCategoryList.value.add(category);
-      } else {
-        expenseCategoryList.value.add(category);
-      }
-    });
+    expenseCategoryList.value.addAll(defaultcategoryexpase);
+    incomeCategoryList.value.addAll(defaultcategoryincome);
+    await Future.forEach(
+      allCategories,
+      (
+        CategoryModel category,
+      ) {
+        if (category.type == CategoryType.income) {
+          incomeCategoryList.value.add(category);
+        } else {
+          expenseCategoryList.value.add(category);
+        }
+      },
+    );
 
     incomeCategoryList.notifyListeners();
+
     expenseCategoryList.notifyListeners();
   }
 
@@ -61,9 +68,9 @@ class CategoryDB implements CategoryDBFunctions {
   }
 
   @override
-  Future<void> updateCategory(int id, CategoryModel value) async {
+  Future updateCategory(int id, CategoryModel value) async {
     final categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
-    categoryDB.put(id, value);
+    await categoryDB.put(id, value);
     refreshUI();
   }
 }

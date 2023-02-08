@@ -1,7 +1,8 @@
 import 'package:money_management/db/category/category_db.dart';
 import 'package:money_management/home/screen_home.dart';
+
 import 'package:flutter/material.dart';
-import '../../db/transaction/transaction_db.dart';
+import '../../db/transation/transation_db.dart';
 import '../../models/category_model/category_model.dart';
 import '../../models/transaction_model/transaction_model.dart';
 import '../basescreen/decoration.dart';
@@ -93,7 +94,7 @@ class _ScreentransactionState extends State<Screentransaction> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            const IncomScreen()));
+                            const IncomeScreen()));
                   },
                 ),
                 GestureDetector(
@@ -145,7 +146,7 @@ class _ScreentransactionState extends State<Screentransaction> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            const ExpensesScreen()));
+                            const ExpenssScreen()));
                   },
                 ),
                 Padding(
