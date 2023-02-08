@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:money_management/db/category/category_db.dart';
 import 'package:money_management/screens/category/category_delete.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../models/category_model/category_model.dart';
 import '../basescreen/decoration.dart';

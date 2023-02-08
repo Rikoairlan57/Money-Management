@@ -60,7 +60,7 @@ class _MyStatsState extends State<MyAbout> {
                     children: [
                       const Text('Developed by'),
                       Text(
-                        'RIKO',
+                        'RIKO AIRLAN RAMADHAN',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.purple.shade300),

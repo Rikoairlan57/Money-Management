@@ -1,6 +1,6 @@
 import '../../models/category_model/category_model.dart';
 
-List<CategoryModel> defultcategoryincome = [
+List<CategoryModel> defaultcategoryincome = [
   CategoryModel(
       name: 'Salary',
       type: CategoryType.income,
@@ -10,7 +10,7 @@ List<CategoryModel> defultcategoryincome = [
       type: CategoryType.income,
       image: 'assets/image/bag - Copy.jpg')
 ];
-List<CategoryModel> defultcategoryexpase = [
+List<CategoryModel> defaultcategoryexpase = [
   CategoryModel(
       name: 'Food', type: CategoryType.expense, image: 'assets/image/food.jpg'),
   CategoryModel(

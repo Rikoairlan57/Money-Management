@@ -1,5 +1,5 @@
 import 'package:money_management/db/category/category_db.dart';
-import 'package:money_management/db/transaction/transaction_db.dart';
+import 'package:money_management/db/transation/transation_db.dart';
 import 'package:money_management/models/transaction_model/transaction_model.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -7,19 +7,19 @@ import 'package:intl/intl.dart';
 import '../../models/category_model/category_model.dart';
 import '../basescreen/decoration.dart';
 
-class IncomScreen extends StatefulWidget {
-  const IncomScreen({super.key});
+class IncomeScreen extends StatefulWidget {
+  const IncomeScreen({super.key});
 
   @override
-  State<IncomScreen> createState() => _IncomScreen();
+  State<IncomeScreen> createState() => _IncomeScreen();
 }
 
-class _IncomScreen extends State<IncomScreen> {
+class _IncomeScreen extends State<IncomeScreen> {
   DateTime selectedDate = DateTime.now();
   final CategoryType _selectedCategoryType = CategoryType.income;
-  CategoryModel? _selectedCategoryModel;
+  CategoryModel? _selectedcCategoryModel;
   String? categoeyid;
-  final discriptionediting = TextEditingController();
+  final descriptionediting = TextEditingController();
   final amountcontroller = TextEditingController();
 
   @override
@@ -140,7 +140,7 @@ class _IncomScreen extends State<IncomScreen> {
                                   return null;
                                 }
                               },
-                              controller: discriptionediting,
+                              controller: descriptionediting,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -169,7 +169,7 @@ class _IncomScreen extends State<IncomScreen> {
                                       alignment: Alignment.centerRight,
                                       value: e.id,
                                       onTap: () {
-                                        _selectedCategoryModel = e;
+                                        _selectedcCategoryModel = e;
                                       },
                                       child: ListTile(
                                         title: Text(
@@ -245,12 +245,12 @@ class _IncomScreen extends State<IncomScreen> {
       return;
     }
 
-    final discription = discriptionediting.text;
+    final description = descriptionediting.text;
 
     final model = TransactionModel(
       amount: parsedAmount,
-      category: _selectedCategoryModel!,
-      description: discription,
+      category: _selectedcCategoryModel!,
+      description: description,
       type: _selectedCategoryType,
       calender: selectedDate,
     );

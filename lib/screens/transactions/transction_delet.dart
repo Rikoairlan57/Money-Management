@@ -1,9 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import '../../db/transaction/transaction_db.dart';
+import '../../db/transation/transation_db.dart';
 import '../basescreen/decoration.dart';
 
-void transactiondelete(value, context) {
+void transactiondelet(value, context) {
   showDialog(
       context: context,
       builder: (context) {

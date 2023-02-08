@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'decoration.dart';
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:money_management/home/screen_home.dart';
-import 'package:money_management/home/widgets/intro_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'decoration.dart';
+import '../../home/widgets/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,9 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 169, 76, 186),
       body: SafeArea(
-          child: Center(
-        child: textBig(text: "money"),
-      )),
+        child: Center(
+          child: textBig(text: 'money'),
+        ),
+      ),
     );
   }
 

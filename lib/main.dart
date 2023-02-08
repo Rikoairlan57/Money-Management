@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:money_management/screens/basescreen/splash_screen.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:money_management/db/transaction/transaction_db.dart';
+import 'package:money_management/db/transation/transation_db.dart';
 import 'package:money_management/models/transaction_model/transaction_model.dart';
-import 'package:money_management/models/category_model/category_model.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'models/category_model/category_model.dart';
+import 'screens/basescreen/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Money Management',
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.purple,

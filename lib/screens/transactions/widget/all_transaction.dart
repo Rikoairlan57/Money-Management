@@ -1,11 +1,11 @@
 import 'package:money_management/models/category_model/category_model.dart';
 import 'package:money_management/models/transaction_model/transaction_model.dart';
 import 'package:money_management/screens/basescreen/decoration.dart';
-import 'package:money_management/screens/transactions/delete_transaction.dart';
+import 'package:money_management/screens/transactions/transction_delet.dart';
 import 'package:money_management/screens/transactions/update_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../../../db/transaction/transaction_db.dart';
+import '../../../db/transation/transation_db.dart';
 import '../../../home/screen_home.dart';
 
 // ignore: must_be_immutable
@@ -56,7 +56,7 @@ class _RecentTransactionState extends State<RecentTransaction> {
                     SlidableAction(
                       borderRadius: BorderRadius.circular(15),
                       onPressed: (context) {
-                        transactiondelete(widget.result[index].id, context);
+                        transactiondelet(widget.result[index].id, context);
                       },
                       backgroundColor: Colors.red,
                       icon: Icons.delete,
